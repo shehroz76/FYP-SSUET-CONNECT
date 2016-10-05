@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "284377151447",
+    "firebase_url": "https://ssuet-connect.firebaseio.com",
+    "project_id": "ssuet-connect",
+    "storage_bucket": "ssuet-connect.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:284377151447:android:6237a6cdf4e81ac4",
+        "android_client_info": {
+          "package_name": "com.ssuet.connect.ssuetconnect"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "284377151447-7kiujopo1h9g2r0qu5pikg2v21ksr2s6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ssuet.connect.ssuetconnect",
+            "certificate_hash": "C88C2A3B20D3FB7CE4BB93531F61440120E978DB"
+          }
+        },
+        {
+          "client_id": "284377151447-88fl9rr7bshle3pa2usd3eua5b7a7l9d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZdyQRxqDX4HbKOsVpRhc5P-mnoyIKA0E"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "284377151447-88fl9rr7bshle3pa2usd3eua5b7a7l9d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

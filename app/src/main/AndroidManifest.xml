@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.ssuet.connect.ssuetconnect">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".LoginActivity">
+        </activity>
+        <activity android:name=".RegisterationActivity">
+        </activity>
+        <activity android:name=".StudentErpActivity"
+                  android:label="@string/erp_name"
+            android:parentActivityName=".MainActivity">
+        </activity>
+        <activity android:name=".ChatActivity"
+                  android:label="@string/chat_name"
+            android:parentActivityName=".MainActivity">
+        </activity>
+        <activity android:name=".LibraryActivity"
+                  android:label="@string/lib_name"
+            android:parentActivityName=".MainActivity">
+        </activity>
+        <activity android:name=".LocationFinderActivity"
+                  android:label="@string/loc_name"
+            android:parentActivityName=".MainActivity">
+        </activity>
+        <activity android:name=".JobsInternshipActivity"
+                  android:label="@string/jobs_name"
+            android:parentActivityName=".MainActivity">
+        </activity>
+        <activity android:name=".SportsNewsEventsActivity"
+                  android:label="@string/others_name">
+        </activity>
+    </application>
+
+</manifest>

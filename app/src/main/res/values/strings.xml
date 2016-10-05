@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">SSUET CONNECT</string>
+
+
+    <string name="erp_name">Student Record</string>
+    <string name="chat_name">CHAT</string>
+    <string name="lib_name">Find Me A Book</string>
+    <string name="loc_name">Location Finder</string>
+    <string name="jobs_name">Jobs/Internship</string>
+    <string name="others_name">Sports And others</string>
+
+
+</resources>
