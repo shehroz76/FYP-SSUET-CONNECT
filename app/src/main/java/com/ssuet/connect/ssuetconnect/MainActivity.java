@@ -13,6 +13,8 @@ import android.view.View;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import static com.ssuet.connect.ssuetconnect.R.id.action_log;
+
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "User" ;
@@ -158,9 +160,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-//       if(item.getItemId() == action_log) {
-//           Signout();
-//       }
+       if(item.getItemId() == action_log) {
+           Signout();
+       }
 
 
         return super.onOptionsItemSelected(item);

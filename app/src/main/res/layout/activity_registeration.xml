@@ -54,41 +54,6 @@
                 </android.support.design.widget.TextInputLayout>
             </LinearLayout>
 
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp">
-
-                <ImageView
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:padding="10dp"
-                    android:src="@drawable/icon_person_free_reg" />
-
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <EditText
-                        android:id="@+id/editText_userID"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginBottom="10dp"
-                        android:hint="User ID"
-                        android:imeOptions="actionNext"
-                        android:nextFocusDown="@+id/editText_fname"
-                        android:padding="10dp"
-                        android:maxLength="20"
-                        android:digits="abcdefghijklmnopqrstuvwxyz1234567890"
-                        android:maxLines="1"
-                        android:singleLine="true"
-                        android:text=""
-                        android:textSize="14sp" />
-                </android.support.design.widget.TextInputLayout>
-            </LinearLayout>
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -153,6 +118,42 @@
                         android:textSize="14sp" />
                 </android.support.design.widget.TextInputLayout>
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp">
+
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:padding="10dp"
+                    android:src="@drawable/icon_person_free_reg" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/editText_batchNo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginBottom="10dp"
+                        android:hint="Batch No"
+                        android:imeOptions="actionNext"
+                        android:nextFocusDown="@+id/editText_fname"
+                        android:padding="10dp"
+                        android:maxLength="20"
+                        android:digits="abcdefghijklmnopqrstuvwxyz1234567890"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:text=""
+                        android:textSize="14sp" />
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+
 
             <LinearLayout
                 android:layout_width="match_parent"
