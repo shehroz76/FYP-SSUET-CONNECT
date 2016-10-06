@@ -15,9 +15,11 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity">
+        <activity android:name=".LoginActivity"
+                  android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         </activity>
-        <activity android:name=".RegisterationActivity">
+        <activity android:name=".RegisterationActivity"
+                  android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         </activity>
         <activity android:name=".StudentErpActivity"
                   android:label="@string/erp_name"
