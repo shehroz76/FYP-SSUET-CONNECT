@@ -9,8 +9,9 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        android:theme="@style/Theme.DesignDemo">
+        <activity android:name=".MainActivity"
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -18,14 +19,16 @@
             </intent-filter>
         </activity>
         <activity android:name=".LoginActivity"
-                  android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+                 >
         </activity>
         <activity android:name=".RegisterationActivity"
-                  android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+                 >
         </activity>
         <activity android:name=".StudentErpActivity"
                   android:label="@string/erp_name"
             android:parentActivityName=".MainActivity">
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                       android:value=".MainActivity" />
         </activity>
         <activity android:name=".ChatActivity"
                   android:label="@string/chat_name"
@@ -34,6 +37,8 @@
         <activity android:name=".LibraryActivity"
                   android:label="@string/lib_name"
             android:parentActivityName=".MainActivity">
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                       android:value=".MainActivity" />
         </activity>
         <activity android:name=".LocationFinderActivity"
                   android:label="@string/loc_name"
@@ -42,9 +47,13 @@
         <activity android:name=".JobsInternshipActivity"
                   android:label="@string/jobs_name"
             android:parentActivityName=".MainActivity">
-        </activity>
+            </activity>
+        <meta-data android:name="android.support.PARENT_ACTIVITY"
+                   android:value=".MainActivity" />
         <activity android:name=".SportsNewsEventsActivity"
                   android:label="@string/others_name">
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                       android:value=".MainActivity" />
         </activity>
     </application>
 
