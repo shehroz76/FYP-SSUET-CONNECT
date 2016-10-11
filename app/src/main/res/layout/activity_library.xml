@@ -63,6 +63,10 @@
             android:paddingTop="24dp">
 
 
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/blog_recylView_Grid_Library_item"></android.support.v7.widget.RecyclerView>
 
 
 
