@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.ssuet.connect.ssuetconnect">
+    package="com.ssuet.connect.ssuetconnect">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -10,53 +10,57 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.DesignDemo">
-        <activity android:name=".MainActivity"
-            android:theme="@style/AppTheme">
-
+        <activity
+            android:name=".MainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".RegisterationActivity"></activity>
+        <activity
+            android:name=".StudentErpActivity"
+            android:label="@string/erp_name"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity
+            android:name=".ChatActivity"
+            android:label="@string/chat_name"
+            android:parentActivityName=".MainActivity"></activity>
+        <activity
+            android:name=".LibraryActivity"
+            android:label="@string/lib_name"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity
+            android:name=".LocationFinderActivity"
+            android:label="@string/loc_name"
+            android:parentActivityName=".MainActivity"></activity>
+        <activity
+            android:name=".JobsInternshipActivity"
+            android:label="@string/jobs_name"
+            android:parentActivityName=".MainActivity"></activity>
 
-        </activity>
-        <activity android:name=".LoginActivity">
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".MainActivity" />
 
+        <activity
+            android:name=".SportsNewsEventsActivity"
+            android:label="@string/others_name">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
         </activity>
-        <activity android:name=".RegisterationActivity"
-                 >
-        </activity>
-        <activity android:name=".StudentErpActivity"
-                  android:label="@string/erp_name"
-            android:parentActivityName=".MainActivity">
-            <meta-data android:name="android.support.PARENT_ACTIVITY"
-                       android:value=".MainActivity" />
-        </activity>
-        <activity android:name=".ChatActivity"
-                  android:label="@string/chat_name"
-            android:parentActivityName=".MainActivity">
-        </activity>
-        <activity android:name=".LibraryActivity"
-                  android:label="@string/lib_name"
-            android:parentActivityName=".MainActivity">
-            <meta-data android:name="android.support.PARENT_ACTIVITY"
-                       android:value=".MainActivity" />
-        </activity>
-        <activity android:name=".LocationFinderActivity"
-                  android:label="@string/loc_name"
-            android:parentActivityName=".MainActivity">
-        </activity>
-        <activity android:name=".JobsInternshipActivity"
-                  android:label="@string/jobs_name"
-            android:parentActivityName=".MainActivity">
-            </activity>
-        <meta-data android:name="android.support.PARENT_ACTIVITY"
-                   android:value=".MainActivity" />
-        <activity android:name=".SportsNewsEventsActivity"
-                  android:label="@string/others_name">
-            <meta-data android:name="android.support.PARENT_ACTIVITY"
-                       android:value=".MainActivity" />
-        </activity>
+        <activity android:name=".SetupActivity"></activity>
     </application>
 
 </manifest>
