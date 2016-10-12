@@ -157,6 +157,7 @@ public class RegisterationActivity extends AppCompatActivity {
                             if(task.isSuccessful()) {
                                 String user_id = mAuth.getCurrentUser().getUid();
 
+
                                 DatabaseReference current_user_db = mDatabaseUsersignUp.child(user_id);
 
 

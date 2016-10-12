@@ -50,10 +50,9 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     // User is signed out
 
-                    Intent SignInActivityIntent = new Intent(MainActivity.this , LoginActivity.class);
-                    SignInActivityIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(SignInActivityIntent);
-
+                    Intent loginActivityIntent = new Intent(MainActivity.this , LoginActivity.class);
+                    loginActivityIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(loginActivityIntent);
 
                     Log.d(TAG, "onAuthStateChanged:signed_out");
                 }
