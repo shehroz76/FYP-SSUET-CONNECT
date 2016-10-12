@@ -137,7 +137,7 @@
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:layout_gravity="center_horizontal"
-                        android:src="@drawable/erp"
+                        android:src="@drawable/erp_header"
                         app:civ_border_width="2dp"
                         app:civ_border_color="#FF000000"
                         android:layout_marginTop="5dp"
@@ -228,7 +228,7 @@
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:layout_gravity="center_horizontal"
-                        android:src="@drawable/lib"
+                        android:src="@drawable/library4"
                         app:civ_border_width="2dp"
                         app:civ_border_color="#FF000000"
                         android:layout_marginTop="5dp"/>
@@ -263,7 +263,7 @@
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:layout_gravity="center_horizontal"
-                        android:src="@drawable/location_finder"
+                        android:src="@drawable/loc_header"
                         app:civ_border_width="2dp"
                         app:civ_border_color="#FF000000"
                         android:layout_marginTop="5dp"/>
@@ -310,7 +310,7 @@
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:layout_gravity="center_horizontal"
-                        android:src="@drawable/job"
+                        android:src="@drawable/job_header"
                         app:civ_border_width="2dp"
                         app:civ_border_color="#FF000000"
                         android:layout_marginTop="5dp"/>

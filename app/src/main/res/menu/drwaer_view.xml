@@ -3,32 +3,34 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_home"
-
-            android:title="Home" />
+            android:id="@+id/nav_erp"
+            android:icon="@drawable/erp_header"
+            android:title="ERP" />
         <item
-            android:id="@+id/nav_messages"
-
-            android:title="Messages" />
+            android:id="@+id/Chat"
+            android:icon="@drawable/chat"
+            android:title="Chat" />
         <item
-            android:id="@+id/nav_friends"
-
-            android:title="Friends" />
+            android:id="@+id/nav_Library"
+            android:icon="@drawable/library4"
+            android:title="Book Finder" />
         <item
-            android:id="@+id/nav_discussion"
-
-            android:title="Discussion" />
+            android:id="@+id/nav_Location_finder"
+            android:icon="@drawable/loc_header"
+            android:title="Location Finder" />
     </group>
 
-    <item android:title="Sub items">
+    <item android:title="More">
         <menu>
             <item
-
-                android:title="Sub item 1" />
+                android:title="About SSUET" />
             <item
-
-                android:title="Sub item 2" />
+                android:title="SSUET CONNECT" />
         </menu>
     </item>
+
+    <item android:title="Logout"
+        android:id="@+id/action_log"
+        android:icon="@drawable/ic_action_logout"></item>
 
 </menu>

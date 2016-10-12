@@ -166,7 +166,7 @@ public class RegisterationActivity extends AppCompatActivity {
                                 current_user_db.child("Batch").setValue(userBatchNo);
                                 mProgress.dismiss();
 
-                                Intent signinIntent = new Intent(RegisterationActivity.this, LoginActivity.class);
+                                Intent signinIntent = new Intent(RegisterationActivity.this, SetupActivity.class);
                                 signinIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 startActivity(signinIntent);
 

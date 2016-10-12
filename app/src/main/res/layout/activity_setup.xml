@@ -103,25 +103,6 @@
                 </android.support.design.widget.TextInputLayout>
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:padding="10dp"
-                    android:src="@drawable/icon_person_free_reg" />
-
-
-
-                    <Spinner
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        
-                        android:id="@+id/spinner"
-                        android:layout_weight="1" />
-
 
 
             <Button
@@ -132,33 +113,11 @@
                 android:layout_marginTop="10dp"
                 android:background="@color/colorPrimaryDark"
                 android:padding="10dp"
-                android:text="Login"
+                android:text="SUBMIT"
                 android:textColor="#fff" />
 
         </LinearLayout>
 
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
-
-        <TextView
-            android:id="@+id/textViewSignUp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="50dp"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:padding="5dp"
-            android:text="Create new Account"
-            android:textColor="#fff" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
 
 
     </LinearLayout>
