@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private DrawerLayout mDrawerLayout;
-    private DatabaseReference mDatabaseUser;
+//    private DatabaseReference mDatabaseUser;
 
 
     @Override
@@ -96,8 +96,8 @@ public class MainActivity extends AppCompatActivity {
         mDatabaseReferenceUserInfo = FirebaseDatabase.getInstance().getReference().child("Users");
         mDatabaseReferenceUserInfo.keepSynced(true);
 
-        mDatabaseUser = FirebaseDatabase.getInstance().getReference().child("Users");
-        mDatabaseUser.keepSynced(true);
+//        mDatabaseUser = FirebaseDatabase.getInstance().getReference().child("Users");
+//        mDatabaseUser.keepSynced(true);
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -109,6 +109,50 @@ public class MainActivity extends AppCompatActivity {
 
                     mProgress.setMessage("Updating..");
                     mProgress.show();
+
+                    String UserUid = mAuth.getCurrentUser().getUid();
+                    DatabaseReference mref=mDatabaseReferenceUserInfo.child(UserUid);
+                    mref.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+
+
+                            Map <String, String> map = (Map)dataSnapshot.getValue();
+                            String name = map.get("Name");
+                            String batch =map.get("Batch");
+                            String image =map.get("Profile Image");
+
+                            if (!TextUtils.isEmpty(name)){
+                                mProfileUserNameMain.setText(name);}
+                            else
+                                mProfileUserNameMain.setText("User Name");
+
+                            if (!TextUtils.isEmpty(batch)) {
+                                mProfileUserBatchMain.setText(batch);
+                            }
+                            else
+                                mProfileUserBatchMain.setText("Batch No : -- -- --");
+
+                            if(!TextUtils.isEmpty(image)){
+
+                                Picasso.with(MainActivity.this).load(image).into(mProfileImageMain);
+                            }else
+                                Picasso.with(MainActivity.this).load(R.drawable.profile_placeholder).into(mProfileImageMain);
+
+
+                            mProgress.dismiss();
+
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+
+
+
+
 
 
                 } else {
@@ -132,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
         mJobsCardView = (CardView) findViewById(R.id.jobs_cardView);
         mOthersCardView = (CardView) findViewById(R.id.others_cardView);
 
-        UserProfileInfo();
+//        UserProfileInfo();
 
 
         mProfileImageMain = (CircleImageView) findViewById(R.id.profile_image_main);
@@ -198,56 +242,17 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void UserProfileInfo() {
-
-        String UserUid = mAuth.getCurrentUser().getUid();
-        DatabaseReference mref=mDatabaseReferenceUserInfo.child(UserUid);
-        mref.keepSynced(true);
-        mref.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-
-                Map <String, String> map = (Map)dataSnapshot.getValue();
-                String name = map.get("Name");
-                String batch =map.get("Batch");
-                String image =map.get("Profile Image");
-
-                if (!TextUtils.isEmpty(name)){
-                mProfileUserNameMain.setText(name);}
-                else
-                mProfileUserNameMain.setText("User Name");
-
-                if (!TextUtils.isEmpty(batch)) {
-                    mProfileUserBatchMain.setText(batch);
-                }
-                else
-                    mProfileUserBatchMain.setText("Batch No : -- -- --");
-
-                if(!TextUtils.isEmpty(image)){
-
-                    Picasso.with(MainActivity.this).load(image).into(mProfileImageMain);
-                }else
-                Picasso.with(MainActivity.this).load(R.drawable.profile_placeholder).into(mProfileImageMain);
-
-
-                mProgress.dismiss();
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-    }
+//    private void UserProfileInfo() {
+//
+//
+//    }
 
 
     @Override
     protected void onStart() {
         super.onStart();
         mAuth.addAuthStateListener(mAuthListener);
-        UserProfileInfo();
+//        UserProfileInfo();
 
 
     }
