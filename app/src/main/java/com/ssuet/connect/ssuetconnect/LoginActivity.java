@@ -21,6 +21,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import static com.ssuet.connect.ssuetconnect.RegisterationActivity.EMAIL_ADDRESS;
+import static com.ssuet.connect.ssuetconnect.RegisterationActivity.MIN_PASSWORD_LENGTH;
+
 public class LoginActivity extends AppCompatActivity {
 
 
@@ -129,7 +132,25 @@ public class LoginActivity extends AppCompatActivity {
         String email = mEditTextEmail.getText().toString().trim();
         String password = mEditTextpass.getText().toString().trim();
 
-        if (!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)){
+        if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password)){
+
+            Toast.makeText(LoginActivity.this , "Fields Should not be left Empty" ,
+                    Toast.LENGTH_SHORT).show();
+
+        }
+        else if(email.length()==0 || !EMAIL_ADDRESS.matcher(email).matches() ) {
+            mEditTextEmail.setError("Enter Valid Email Address");
+            Toast.makeText(LoginActivity.this, "Invalid Email",
+                    Toast.LENGTH_SHORT).show();
+        }
+        else if(password.length()<MIN_PASSWORD_LENGTH){
+            mEditTextpass.setError("Passwords should not less than 6");
+            Toast.makeText(LoginActivity.this , "password should not less than 6" ,
+                    Toast.LENGTH_SHORT).show();
+
+
+        }
+        else if (!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)){
 
             mprogress.setMessage("Signing In");
             mprogress.show();
@@ -160,7 +181,7 @@ public class LoginActivity extends AppCompatActivity {
                                 mprogress.dismiss();
 
                                 Log.w(TAG, "signInWithEmail:failed", task.getException());
-                                Toast.makeText(LoginActivity.this, "signIn failes",
+                                Toast.makeText(LoginActivity.this, "WRONG CREDENTIALS ",
                                         Toast.LENGTH_SHORT).show();
                             }
 

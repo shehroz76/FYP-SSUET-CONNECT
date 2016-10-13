@@ -46,7 +46,19 @@
 
             <de.hdodenhof.circleimageview.CircleImageView
                 xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/profile_image"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="-60dp"
+                android:layout_below="@+id/header_cover_image"
+                android:src="@drawable/profile_placeholder"
+                android:padding="5dp"
+                app:civ_border_width="1dp"
+                app:civ_border_color="#FF000000"/>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/profile_image_main"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:layout_centerHorizontal="true"
@@ -57,6 +69,8 @@
                 android:padding="5dp"
                 app:civ_border_width="1dp"
                 app:civ_border_color="#FF000000"/>
+
+
 
 
             <RelativeLayout
@@ -87,7 +101,7 @@
                     />
 
                 <TextView
-                    android:id="@+id/user_profile_name"
+                    android:id="@+id/user_profile_name_main"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
@@ -98,10 +112,10 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/user_profile_short_bio"
+                    android:id="@+id/user_profile_batch_no"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/user_profile_name"
+                    android:layout_below="@+id/user_profile_name_main"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="12dp"
                     android:text="batch no : c.e - 156 - 2013"
