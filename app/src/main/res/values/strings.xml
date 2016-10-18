@@ -8,6 +8,8 @@
     <string name="loc_name">Location Finder</string>
     <string name="jobs_name">Jobs/Internship</string>
     <string name="others_name">Sports And others</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
 
 
 </resources>

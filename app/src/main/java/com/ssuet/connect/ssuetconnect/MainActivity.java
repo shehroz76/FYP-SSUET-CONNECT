@@ -8,6 +8,7 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.CardView;
@@ -19,6 +20,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -55,6 +57,12 @@ public class MainActivity extends AppCompatActivity {
     private TextView mProfileUserNameMain;
     private TextView mProfileUserBatchMain;
 
+    private View mNavHeader;
+    private CircleImageView mCircleImageViewNavheaderPic;
+    private TextView mTextViewUserNameNavHead;
+
+    private String photoUrl = null;
+
     private DatabaseReference mDatabaseReferenceUserInfo;
 
 
@@ -63,6 +71,9 @@ public class MainActivity extends AppCompatActivity {
 
 
     private DrawerLayout mDrawerLayout;
+    private ActionBarDrawerToggle mToggle;
+    private NavigationView mNavigationView;
+
 //    private DatabaseReference mDatabaseUser;
 
 
@@ -79,16 +90,26 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
 
-
-        final ActionBar ab = getSupportActionBar();
-        ab.setHomeAsUpIndicator(R.drawable.ic_menu);
-        ab.setDisplayHomeAsUpEnabled(true);
-
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        if (navigationView != null) {
-            setupDrawerContent(navigationView);
+
+        mToggle = new ActionBarDrawerToggle(this ,mDrawerLayout , R.string.open , R.string.close);
+
+        mDrawerLayout.addDrawerListener(mToggle);
+        mToggle.syncState();
+
+
+//        Picasso.with(MainActivity.this).load(photoUrl).into(mCircleImageViewNavheaderPic);
+
+
+        final ActionBar ab = getSupportActionBar();
+//        ab.setHomeAsUpIndicator(R.drawable.ic_menu);
+        ab.setDisplayHomeAsUpEnabled(true);
+
+
+        mNavigationView = (NavigationView) findViewById(R.id.nav_view);
+        if (mNavigationView != null) {
+            setupDrawerContent(mNavigationView);
         }
 
 
@@ -120,7 +141,8 @@ public class MainActivity extends AppCompatActivity {
                             Map <String, String> map = (Map)dataSnapshot.getValue();
                             String name = map.get("Name");
                             String batch =map.get("Batch");
-                            String image =map.get("Profile Image");
+                            photoUrl =map.get("Profile Image");
+                            String Username= map.get("User Name");
 
                             if (!TextUtils.isEmpty(name)){
                                 mProfileUserNameMain.setText(name);}
@@ -133,11 +155,20 @@ public class MainActivity extends AppCompatActivity {
                             else
                                 mProfileUserBatchMain.setText("Batch No : -- -- --");
 
-                            if(!TextUtils.isEmpty(image)){
+                            if(!TextUtils.isEmpty(photoUrl)){
 
-                                Picasso.with(MainActivity.this).load(image).into(mProfileImageMain);
+                                Picasso.with(MainActivity.this).load(photoUrl).into(mProfileImageMain);
+
+                                Picasso.with(MainActivity.this).load(photoUrl).into(mCircleImageViewNavheaderPic);
                             }else
                                 Picasso.with(MainActivity.this).load(R.drawable.profile_placeholder).into(mProfileImageMain);
+
+                            if(!TextUtils.isEmpty(Username)){
+
+                                mTextViewUserNameNavHead.setText(Username);
+
+                            }else
+                            mTextViewUserNameNavHead.setText("User Name");
 
 
                             mProgress.dismiss();
@@ -184,12 +215,20 @@ public class MainActivity extends AppCompatActivity {
         mProfileUserBatchMain = (TextView) findViewById(R.id.user_profile_batch_no);
 
 
+        mNavHeader = mNavigationView.getHeaderView(0);
+        mCircleImageViewNavheaderPic = (CircleImageView) mNavHeader.findViewById(R.id.profile_image_Nav_head);
+        mTextViewUserNameNavHead = (TextView) mNavHeader.findViewById(R.id.UserNameNavHead);
+
+
+
+
 
         merpCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent erpactivityIntent = new Intent(MainActivity.this , StudentErpActivity.class);
                 erpactivityIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                erpactivityIntent.putExtra("Erp_url" , photoUrl);
                 startActivity(erpactivityIntent);
             }
         });
@@ -199,6 +238,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent chatActivityIntent = new Intent(MainActivity.this , ChatActivity.class);
                 chatActivityIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
                 startActivity(chatActivityIntent);
             }
         });
@@ -208,6 +248,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent LibraryActivityIntent = new Intent(MainActivity.this , LibraryActivity.class);
                 LibraryActivityIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                LibraryActivityIntent.putExtra("lib_url" , photoUrl);
                 startActivity(LibraryActivityIntent);
             }
         });
@@ -217,6 +258,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent LocFindActivityIntent = new Intent(MainActivity.this , LocationFinderActivity.class);
                 LocFindActivityIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                LocFindActivityIntent.putExtra("loc_url" , photoUrl);
                 startActivity(LocFindActivityIntent);
             }
         });
@@ -226,6 +268,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent JobActivityIntent = new Intent(MainActivity.this , JobsInternshipActivity.class);
                 JobActivityIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                JobActivityIntent.putExtra("job_url" , photoUrl);
                 startActivity(JobActivityIntent);
             }
         });
@@ -235,6 +278,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent OthersActivityIntent = new Intent(MainActivity.this , SportsNewsEventsActivity.class);
                 OthersActivityIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                OthersActivityIntent.putExtra("others_url" , photoUrl);
                 startActivity(OthersActivityIntent);
             }
         });
@@ -242,10 +286,12 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
 //    private void UserProfileInfo() {
 //
 //
 //    }
+
 
 
     @Override
@@ -285,6 +331,13 @@ public class MainActivity extends AppCompatActivity {
             case android.R.id.home:
                 mDrawerLayout.openDrawer(GravityCompat.START);
                 return true;
+
+
+            case R.id.nav_erp:
+
+                break;
+
+
             case R.id.action_log:
                 Signout();
                 break;
@@ -297,9 +350,79 @@ public class MainActivity extends AppCompatActivity {
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
+
+                        switch (menuItem.getItemId()) {
+                            //Replacing the main content with ContentFragment Which is our Inbox View;
+
+                            case R.id.nav_erp:
+                                // launch new intent instead of loading fragment
+                                Intent erpactivityIntent = new Intent(MainActivity.this , StudentErpActivity.class);
+                                erpactivityIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                erpactivityIntent.putExtra("Erp_url" , photoUrl);
+                                startActivity(erpactivityIntent);
+                                mDrawerLayout.closeDrawers();
+                                return true;
+
+
+                            case R.id.nav_Chat:
+
+                                Intent chatActivityIntent = new Intent(MainActivity.this , ChatActivity.class);
+                                chatActivityIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+                                startActivity(chatActivityIntent);
+                                mDrawerLayout.closeDrawers();
+                                return true;
+
+                            case R.id.nav_Library:
+
+                                Intent LibraryActivityIntent = new Intent(MainActivity.this , LibraryActivity.class);
+                                LibraryActivityIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                LibraryActivityIntent.putExtra("lib_url" , photoUrl);
+                                startActivity(LibraryActivityIntent);
+                                mDrawerLayout.closeDrawers();
+                                return true;
+
+                            case R.id.nav_Location_finder :
+
+                                Intent LocFindActivityIntent = new Intent(MainActivity.this , LocationFinderActivity.class);
+                                LocFindActivityIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                LocFindActivityIntent.putExtra("loc_url" , photoUrl);
+                                startActivity(LocFindActivityIntent);
+                                mDrawerLayout.closeDrawers();
+                                return true;
+
+                            case R.id.nav_about_ssuet :
+
+                                Intent AboutSsuetIntent = new Intent(MainActivity.this , AboutSsuet.class);
+                                AboutSsuetIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(AboutSsuetIntent);
+                                mDrawerLayout.closeDrawers();
+                                return true;
+
+                            case R.id.about_ssuetConnect :
+
+                                Intent AboutSsuetConnectIntent = new Intent(MainActivity.this , AboutSsuetConnect.class);
+                                AboutSsuetConnectIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(AboutSsuetConnectIntent);
+                                mDrawerLayout.closeDrawers();
+                                return true;
+
+                            case R.id.nav_logout :
+
+                                Signout();
+                                break;
+
+                        }
+
+
                         menuItem.setChecked(true);
                         mDrawerLayout.closeDrawers();
                         return true;
+
+
+
+
+
                     }
                 });
     }
