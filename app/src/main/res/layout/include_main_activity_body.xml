@@ -83,13 +83,15 @@
 
 
                 <ImageView
-                    android:id="@+id/add_friend"
+                    android:id="@+id/upload_profile_image"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="16dp"
                     android:layout_toLeftOf="@+id/drop_down_option_menu"
-                    android:src="@drawable/ic_action_upload_image" />
+                   />
+
+
 
                 <ImageView
                     android:id="@+id/drop_down_option_menu"
@@ -143,6 +145,7 @@
                     android:id="@+id/erp_cardView"
                     android:translationZ="5dp"
                     card_view:cardCornerRadius="5dp"
+                    app:cardCornerRadius="10dp"
                     >
 
 
@@ -183,6 +186,7 @@
                     android:elevation="50dp"
                     android:id="@+id/chat_cardView"
                     android:translationZ="5dp"
+                    app:cardCornerRadius="10dp"
                     card_view:cardCornerRadius="5dp">
 
                     <de.hdodenhof.circleimageview.CircleImageView
@@ -235,6 +239,8 @@
                     android:id="@+id/library_cardView"
                     android:translationZ="5dp"
                     card_view:cardCornerRadius="5dp"
+                    app:cardCornerRadius="10dp"
+
                     >
 
                     <de.hdodenhof.circleimageview.CircleImageView
@@ -270,7 +276,9 @@
                     android:elevation="50dp"
                     android:id="@+id/location_finder_cardView"
                     android:translationZ="5dp"
-                    card_view:cardCornerRadius="5dp">
+                    card_view:cardCornerRadius="5dp"
+                    app:cardCornerRadius="10dp"
+                   >
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/map"
@@ -317,6 +325,7 @@
                     android:id="@+id/jobs_cardView"
                     android:translationZ="5dp"
                     card_view:cardCornerRadius="5dp"
+                    app:cardCornerRadius="10dp"
                     >
 
                     <de.hdodenhof.circleimageview.CircleImageView
@@ -338,6 +347,7 @@
                         android:text="Find me a Job"
                         android:padding="20dp"
                         android:gravity="center_horizontal"
+
                         />
 
                 </android.support.v7.widget.CardView>
@@ -352,7 +362,8 @@
                     android:elevation="50dp"
                     android:id="@+id/others_cardView"
                     android:translationZ="5dp"
-                    card_view:cardCornerRadius="5dp">
+                    card_view:cardCornerRadius="5dp"
+                    app:cardCornerRadius="10dp">
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/sports_image"

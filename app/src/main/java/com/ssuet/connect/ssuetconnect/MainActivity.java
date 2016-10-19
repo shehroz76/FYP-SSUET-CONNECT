@@ -2,6 +2,7 @@ package com.ssuet.connect.ssuetconnect;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -18,10 +19,13 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -30,7 +34,12 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
+import com.theartofdev.edmodo.cropper.CropImage;
+import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.util.Map;
 import java.util.jar.Attributes;
@@ -60,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
     private View mNavHeader;
     private CircleImageView mCircleImageViewNavheaderPic;
     private TextView mTextViewUserNameNavHead;
+    private ImageView mImageViewupload;
 
     private String photoUrl = null;
 
@@ -73,8 +83,12 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     private NavigationView mNavigationView;
+    private static final int Gallery_Request = 1;
+    private Uri mImageUri2 = null;
+    private StorageReference mStorageUserImage;
 
-//    private DatabaseReference mDatabaseUser;
+    private DatabaseReference mDatabaseUsers;
+    private String UserUid;
 
 
     @Override
@@ -114,11 +128,14 @@ public class MainActivity extends AppCompatActivity {
 
 
         mAuth = FirebaseAuth.getInstance();
+
+        mStorageUserImage = FirebaseStorage.getInstance().getReference();
+
         mDatabaseReferenceUserInfo = FirebaseDatabase.getInstance().getReference().child("Users");
         mDatabaseReferenceUserInfo.keepSynced(true);
 
-//        mDatabaseUser = FirebaseDatabase.getInstance().getReference().child("Users");
-//        mDatabaseUser.keepSynced(true);
+        mDatabaseUsers = FirebaseDatabase.getInstance().getReference().child("Users");
+        mDatabaseUsers.keepSynced(true);
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -131,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
                     mProgress.setMessage("Updating..");
                     mProgress.show();
 
-                    String UserUid = mAuth.getCurrentUser().getUid();
+                    UserUid = mAuth.getCurrentUser().getUid();
                     DatabaseReference mref=mDatabaseReferenceUserInfo.child(UserUid);
                     mref.addValueEventListener(new ValueEventListener() {
                         @Override
@@ -213,6 +230,7 @@ public class MainActivity extends AppCompatActivity {
         mProfileImageMain = (CircleImageView) findViewById(R.id.profile_image_main);
         mProfileUserNameMain = (TextView) findViewById(R.id.user_profile_name_main);
         mProfileUserBatchMain = (TextView) findViewById(R.id.user_profile_batch_no);
+        mImageViewupload = (ImageView) findViewById(R.id.upload_profile_image);
 
 
         mNavHeader = mNavigationView.getHeaderView(0);
@@ -220,7 +238,31 @@ public class MainActivity extends AppCompatActivity {
         mTextViewUserNameNavHead = (TextView) mNavHeader.findViewById(R.id.UserNameNavHead);
 
 
+        mImageViewupload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                Intent profile_gallerY_intent = new Intent(Intent.ACTION_GET_CONTENT);
+                profile_gallerY_intent.setType("image/*");
+                startActivityForResult(profile_gallerY_intent , Gallery_Request);
+
+
+
+
+            }
+        });
+
+
+
+        mProfileImageMain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent imageViewactivityIntent = new Intent(MainActivity.this , ImageViewActivity.class);
+                imageViewactivityIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                imageViewactivityIntent.putExtra("Image_url" , photoUrl);
+                startActivity(imageViewactivityIntent);
+            }
+        });
 
 
         merpCardView.setOnClickListener(new View.OnClickListener() {
@@ -285,6 +327,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+
 
 
 //    private void UserProfileInfo() {
@@ -436,6 +480,35 @@ public class MainActivity extends AppCompatActivity {
             super.onBackPressed();
         }
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == Gallery_Request && resultCode == RESULT_OK) {
+
+            Uri ImageUri1 = data.getData();
+
+            CropImage.activity(ImageUri1)
+                    .setGuidelines(CropImageView.Guidelines.ON)
+                    .setAspectRatio(1 , 1)
+                    .start(this);
+
+        }
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+            CropImage.ActivityResult result = CropImage.getActivityResult(data);
+            if (resultCode == RESULT_OK) {
+
+                mImageUri2 = result.getUri();
+
+            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
+                Exception error = result.getError();
+            }
+        }
+
+
+    }
+
 
 
 }

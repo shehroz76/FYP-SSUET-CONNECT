@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -83,6 +85,10 @@ public class LoginActivity extends AppCompatActivity {
         mEditTextpass = (EditText) findViewById(R.id.editTextPassword);
         mTextViewsignup = (TextView) findViewById(R.id.textViewSignUp);
 
+        mEditTextEmail.addTextChangedListener(mTextWatcher);
+        mEditTextpass.addTextChangedListener(mTextWatcher);
+
+
         mSignInButton = (Button) findViewById(R.id.signinbutton);
 
 
@@ -152,6 +158,8 @@ public class LoginActivity extends AppCompatActivity {
         }
         else if (!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)){
 
+
+
             mprogress.setMessage("Signing In");
             mprogress.show();
 
@@ -192,6 +200,52 @@ public class LoginActivity extends AppCompatActivity {
         }
 
     }
+
+
+    //  create a textWatcher member
+    private TextWatcher mTextWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {
+            // check Fields For Empty Values
+            checkingSignInforeileds();
+        }
+    };
+
+    private void checkingSignInforeileds() {
+
+
+
+        String email = mEditTextEmail.getText().toString().trim();
+        String password = mEditTextpass.getText().toString().trim();
+
+        if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password)){
+
+            mSignInButton.setEnabled(false);
+            mSignInButton.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+
+        }
+        else if (!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)){
+
+            mSignInButton.setEnabled(true);
+            mSignInButton.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+        }
+
+
+
+
+
+
+
+        }
+
 
     @Override
     public void onBackPressed() {

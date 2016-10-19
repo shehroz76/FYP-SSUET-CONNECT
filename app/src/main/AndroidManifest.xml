@@ -64,7 +64,8 @@
         </activity>
         <activity android:name=".SetupActivity" />
         <activity android:name=".AboutSsuet" />
-        <activity android:name=".AboutSsuetConnect"></activity>
+        <activity android:name=".AboutSsuetConnect" />
+        <activity android:name=".ImageViewActivity"></activity>
     </application>
 
 </manifest>

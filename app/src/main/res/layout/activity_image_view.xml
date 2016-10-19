@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_image_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+
+    tools:context="com.ssuet.connect.ssuetconnect.ImageViewActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:id="@+id/linearLayout"
+        android:orientation="vertical"
+        android:background="#000000">
+        
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            android:layout_marginTop="25dp"
+            android:id="@+id/ImageView_ProfileImage"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@id/linearLayout"
+            android:layout_margin="15dp"
+            android:background="@color/colorPrimary"
+            android:text="Upload"
+            android:id="@+id/upload_newPic"
+            android:textColor="#ffffff"/>
+
+        <Button
+            android:text="Change Profile pic"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="15dp"
+            android:id="@+id/Submit_button"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/cardview_light_background" />
+
+
+    </LinearLayout>
+    </ScrollView>
+
+
+
+</RelativeLayout>

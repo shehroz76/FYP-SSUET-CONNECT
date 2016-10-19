@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,6 +26,7 @@ import com.theartofdev.edmodo.cropper.CropImageView;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 import static android.R.attr.data;
+import static com.ssuet.connect.ssuetconnect.RegisterationActivity.EMAIL_ADDRESS;
 
 public class SetupActivity extends AppCompatActivity {
 
@@ -58,6 +61,9 @@ public class SetupActivity extends AppCompatActivity {
         mUser_Name = (EditText) findViewById(R.id.editTextUserName);
         mSubmit_button = (Button) findViewById(R.id.submitButton);
 
+
+
+        mUser_Name.addTextChangedListener(mTextWatcher);
 
 
 
@@ -187,6 +193,48 @@ public class SetupActivity extends AppCompatActivity {
 
     }
 
+    //  create a textWatcher member
+    private TextWatcher mTextWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {
+            // check Fields For Empty Values
+            checkingSignInforeileds();
+        }
+    };
+
+    private void checkingSignInforeileds() {
+
+
+
+        String userName = mUser_Name.getText().toString().trim();
+
+        if (TextUtils.isEmpty(userName) || mImageUri1 == null){
+
+            mSubmit_button.setEnabled(false);
+            mSubmit_button.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+
+        }
+        else if (!TextUtils.isEmpty(userName) && mImageUri1 != null){
+
+            mSubmit_button.setEnabled(true);
+            mSubmit_button.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+        }
+
+
+
+
+
+
+
+    }
 
 
 
