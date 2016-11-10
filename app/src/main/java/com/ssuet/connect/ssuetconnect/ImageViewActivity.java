@@ -108,7 +108,7 @@ public class ImageViewActivity extends AppCompatActivity {
 
                     String dowloadProfilePicUrl = taskSnapshot.getDownloadUrl().toString();
 
-                    mDatabaseUsers.child(UserUid).child("Profile Image").setValue(dowloadProfilePicUrl);
+                    mDatabaseUsers.child(UserUid).child("Profile_Image").setValue(dowloadProfilePicUrl);
 
                     mProgress.dismiss();
 

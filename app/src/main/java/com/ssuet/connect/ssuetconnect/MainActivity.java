@@ -158,8 +158,8 @@ public class MainActivity extends AppCompatActivity {
                             Map <String, String> map = (Map)dataSnapshot.getValue();
                             String name = map.get("Name");
                             String batch =map.get("Batch");
-                            photoUrl =map.get("Profile Image");
-                            String Username= map.get("User Name");
+                            photoUrl =map.get("Profile_Image");
+                            String Username= map.get("User_Name");
 
                             if (!TextUtils.isEmpty(name)){
                                 mProfileUserNameMain.setText(name);}
